@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dax Jones — Build Your Own Travel Business</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#152238;
+    --ink-2:#1f3358;
+    --brass:#c79a4b;
+    --brass-soft:#e3c078;
+    --paper:#f1ece0;
+    --paper-2:#e8e1d0;
+    --teal:#2f6f6d;
+    --line: rgba(241,236,224,0.16);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--ink);
+    color:var(--paper);
+    font-family:'Work Sans', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1100px;margin:0 auto;padding:0 28px;}
+
+  /* ---------- NAV ---------- */
+  nav{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:26px 28px;max-width:1100px;margin:0 auto;
+  }
+  .brand{
+    font-family:'Fraunces',serif;font-weight:600;font-size:1.15rem;
+    letter-spacing:0.02em;color:var(--paper);
+  }
+  .brand span{color:var(--brass-soft);}
+  nav a.cta-small{
+    border:1px solid var(--brass);
+    color:var(--brass-soft);
+    padding:9px 18px;
+    border-radius:999px;
+    text-decoration:none;
+    font-size:0.85rem;
+    font-weight:500;
+    transition:all .2s ease;
+  }
+  nav a.cta-small:hover{background:var(--brass);color:var(--ink);}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding:64px 28px 40px;
+    max-width:1100px;margin:0 auto;
+    position:relative;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.78rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--teal);
+    background:rgba(47,111,109,0.15);
+    display:inline-block;
+    padding:6px 14px;
+    border-radius:3px;
+    border:1px solid rgba(47,111,109,0.4);
+    margin-bottom:26px;
+  }
+  h1{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    font-size:clamp(2.4rem, 5.4vw, 4.4rem);
+    line-height:1.04;
+    margin:0 0 22px;
+    max-width:16ch;
+    letter-spacing:-0.01em;
+  }
+  h1 em{
+    font-style:italic;
+    font-weight:500;
+    color:var(--brass-soft);
+  }
+  .sub{
+    font-size:1.15rem;
+    line-height:1.6;
+    color:rgba(241,236,224,0.78);
+    max-width:52ch;
+    margin:0 0 36px;
+  }
+  .hero-actions{display:flex;gap:16px;flex-wrap:wrap;align-items:center;}
+  .btn-primary{
+    background:var(--brass);
+    color:var(--ink);
+    border:none;
+    padding:16px 30px;
+    border-radius:4px;
+    font-weight:600;
+    font-size:1rem;
+    text-decoration:none;
+    display:inline-block;
+    transition:transform .15s ease, background .2s ease;
+  }
+  .btn-primary:hover{background:var(--brass-soft);transform:translateY(-1px);}
+  .btn-ghost{
+    color:var(--paper);
+    text-decoration:none;
+    font-size:0.95rem;
+    border-bottom:1px solid rgba(241,236,224,0.4);
+    padding-bottom:2px;
+  }
+
+  /* ---------- VIDEO ---------- */
+  .video-section{
+    margin:44px auto 0;
+  }
+  .video-frame{
+    max-width:1100px;
+    margin:0 auto;
+    border-radius:8px;
+    overflow:hidden;
+    border:1px solid rgba(199,154,75,0.25);
+    background:#0e1a2e;
+    aspect-ratio:16/9;
+  }
+  .video-frame iframe{
+    width:100%;
+    height:100%;
+    border:0;
+    display:block;
+  }
+  @media (max-width:760px){
+    .video-frame{aspect-ratio:9/16;}
+  }
+
+  /* ---------- DEPARTURE BOARD (signature element) ---------- */
+  .board{
+    margin:56px auto 0;
+    max-width:1100px;
+    padding:0 28px;
+  }
+  .board-inner{
+    background:#0e1a2e;
+    border:1px solid rgba(199,154,75,0.25);
+    border-radius:6px;
+    padding:22px 24px;
+    font-family:'IBM Plex Mono', monospace;
+    overflow-x:auto;
+  }
+  .board-head{
+    display:flex;justify-content:space-between;
+    font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;
+    color:var(--teal);margin-bottom:14px;border-bottom:1px solid var(--line);padding-bottom:10px;
+  }
+  .board-row{
+    display:grid;
+    grid-template-columns: 90px 1fr 140px 110px;
+    gap:12px;
+    padding:11px 0;
+    border-bottom:1px dashed rgba(241,236,224,0.1);
+    font-size:0.86rem;
+    align-items:center;
+    color:rgba(241,236,224,0.85);
+    white-space:nowrap;
+  }
+  .board-row:last-child{border-bottom:none;}
+  .board-row .status{color:var(--brass-soft);font-weight:500;}
+  .board-row .status.now{color:var(--teal);}
+
+  /* ---------- PAIN / PROMISE ---------- */
+  .split{
+    max-width:1100px;margin:110px auto 0;padding:0 28px;
+    display:grid;grid-template-columns:1fr 1fr;gap:56px;
+  }
+  .split h2{
+    font-family:'Fraunces',serif;font-weight:600;
+    font-size:1.9rem;line-height:1.2;margin:0 0 18px;color:var(--paper);
+  }
+  .split p{color:rgba(241,236,224,0.72);line-height:1.7;font-size:1.02rem;}
+  .split .col-right{border-left:1px solid var(--line);padding-left:56px;}
+
+  /* ---------- STORY / PROOF ---------- */
+  .proof{
+    max-width:1100px;margin:110px auto 0;padding:0 28px;
+  }
+  .proof-label{
+    font-family:'IBM Plex Mono',monospace;font-size:0.78rem;
+    letter-spacing:0.14em;text-transform:uppercase;color:var(--brass-soft);margin-bottom:20px;
+  }
+  .quote{
+    font-family:'Fraunces',serif;font-weight:500;font-style:italic;
+    font-size:clamp(1.5rem,2.6vw,2.1rem);line-height:1.5;
+    color:var(--paper);max-width:26ch;
+    border-left:3px solid var(--brass);
+    padding-left:28px;
+  }
+  .quote-attr{
+    margin-top:20px;font-family:'Work Sans';font-style:normal;
+    font-size:0.9rem;color:rgba(241,236,224,0.6);
+  }
+
+  /* ---------- PATH / WHAT YOU GET ---------- */
+  .path{
+    max-width:1100px;margin:120px auto 0;padding:0 28px;
+  }
+  .path h2{
+    font-family:'Fraunces',serif;font-weight:600;font-size:2.2rem;
+    margin:0 0 48px;max-width:14ch;
+  }
+  .tickets{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:22px;
+  }
+  .ticket{
+    background:var(--paper);
+    color:var(--ink);
+    border-radius:8px;
+    padding:26px 22px 24px;
+    position:relative;
+  }
+  .ticket::after{
+    content:"";
+    position:absolute;
+    left:0;right:0;bottom:58px;
+    border-bottom:1.5px dashed rgba(21,34,56,0.25);
+  }
+  .ticket .code{
+    font-family:'IBM Plex Mono',monospace;font-size:0.75rem;letter-spacing:0.1em;
+    color:var(--teal);text-transform:uppercase;margin-bottom:14px;
+  }
+  .ticket h3{
+    font-family:'Fraunces',serif;font-size:1.25rem;font-weight:600;margin:0 0 10px;
+  }
+  .ticket p{font-size:0.92rem;line-height:1.55;color:#3d4a5e;margin:0 0 42px;}
+  .ticket .dest{
+    font-family:'IBM Plex Mono',monospace;font-size:0.78rem;color:#5c6577;
+    display:flex;justify-content:space-between;
+  }
+
+  /* ---------- CTA / BOOKING ---------- */
+  .final-cta{
+    max-width:1100px;margin:130px auto 0;padding:70px 28px 90px;
+    text-align:center;
+    border-top:1px solid var(--line);
+  }
+  .final-cta h2{
+    font-family:'Fraunces',serif;font-weight:600;
+    font-size:clamp(2rem,4vw,3rem);
+    margin:0 0 18px;
+    max-width:18ch;margin-left:auto;margin-right:auto;
+  }
+  .final-cta p{
+    color:rgba(241,236,224,0.72);font-size:1.05rem;margin:0 0 34px;
+  }
+
+  /* ---------- LEAD FORM ---------- */
+  .lead-form{max-width:560px;margin:0 auto;text-align:left;}
+  .lead-form-inner{
+    background:var(--paper);
+    border-radius:8px;
+    padding:32px 30px 30px;
+    position:relative;
+  }
+  .lead-form-inner::before{
+    content:"";
+    position:absolute;top:0;left:0;right:0;height:5px;
+    background:repeating-linear-gradient(90deg, var(--brass) 0 14px, transparent 14px 24px);
+    border-radius:8px 8px 0 0;
+  }
+  .lead-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+  .lead-field{display:flex;flex-direction:column;}
+  .lead-field label{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;
+    color:var(--teal);margin-bottom:6px;
+  }
+  .lead-field input{
+    font-family:'Work Sans',sans-serif;
+    font-size:0.98rem;
+    padding:11px 12px;
+    border:1px solid rgba(21,34,56,0.2);
+    border-radius:4px;
+    background:#fff;
+    color:var(--ink);
+  }
+  .lead-field input:focus{
+    outline:2px solid var(--teal);
+    outline-offset:1px;
+    border-color:var(--teal);
+  }
+  .lead-error{
+    display:none;
+    color:#a5333a;
+    font-size:0.85rem;
+    margin:2px 0 14px;
+  }
+  .lead-submit{
+    width:100%;
+    border:none;
+    cursor:pointer;
+    font-family:'Work Sans',sans-serif;
+    margin-top:6px;
+  }
+
+  footer{
+    text-align:center;padding:34px 28px;color:rgba(241,236,224,0.4);
+    font-size:0.82rem;border-top:1px solid var(--line);
+  }
+
+  @media (max-width:760px){
+    .split{grid-template-columns:1fr;gap:36px;}
+    .split .col-right{border-left:none;padding-left:0;border-top:1px solid var(--line);padding-top:36px;}
+    .tickets{grid-template-columns:1fr;}
+    .board-row{grid-template-columns:70px 1fr 100px;}
+    .board-row .platform{display:none;}
+    .lead-row{grid-template-columns:1fr;gap:0;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="brand">DAX <span>JONES</span></div>
+  <a class="cta-small" href="https://calendly.com/jonesluxurytravel" target="_blank" rel="noopener">Book a Call</a>
+</nav>
+
+<section class="hero">
+  <div class="eyebrow">Now boarding — new travel agents</div>
+  <h1>Build a real business in the <em>travel industry</em>, on your terms.</h1>
+  <p class="sub">Dax Jones helps you become a licensed travel agent and build your own business inside the travel industry, full-time, part-time, or anytime. No degree, no office, no permission slip required.</p>
+  <div class="hero-actions">
+    <a class="btn-primary" href="https://calendly.com/jonesluxurytravel" target="_blank" rel="noopener">Reserve My 15-Minute Call</a>
+    <a class="btn-ghost" href="#path">See how it works</a>
+  </div>
+</section>
+
+<div class="board">
+  <div class="board-inner">
+    <div class="board-head">
+      <span>Departures — Where This Business Could Take You</span>
+      <span>Status</span>
+    </div>
+    <div class="board-row">
+      <span>9 TO 5</span><span>Keep your job, build this on the side</span><span class="platform">GATE 01</span><span class="status">ON TIME</span>
+    </div>
+    <div class="board-row">
+      <span>SIDE $</span><span>Part-time travel agent business around your job</span><span class="platform">GATE 02</span><span class="status">BOARDING</span>
+    </div>
+    <div class="board-row">
+      <span>FT BIZ</span><span>Full-time business in the travel industry</span><span class="platform">GATE 03</span><span class="status now">ON TIME</span>
+    </div>
+  </div>
+</div>
+
+<section class="split">
+  <div class="col-left">
+    <h2>You don't need to leave your 9 to 5</h2>
+    <p>This business is built for the busy person working a full-time job. You keep your paycheck and your stability, and build something on the side that can grow into more money than you ever dreamed of.</p>
+  </div>
+  <div class="col-right">
+    <h2>What this actually is</h2>
+    <p>A real business inside the travel industry. You become a licensed travel agent, earn commission booking trips for real clients, and can build a team underneath you if you want to scale it, backed by training, support, and someone who's already done it.</p>
+  </div>
+</section>
+
+<section class="proof">
+  <div class="proof-label">From the founder</div>
+  <p class="quote">"Two years ago I was drowning in bills. Now I run my travel business from my kitchen table, around my full-time job, and it's already changed what I thought was possible."</p>
+  <p class="quote-attr">— Dax Jones</p>
+</section>
+
+<section class="path" id="path">
+  <h2>Three ways to build in the travel industry</h2>
+  <div class="tickets">
+    <div class="ticket">
+      <div class="code">TICKET · ANYTIME</div>
+      <h3>Curious</h3>
+      <p>You want to know what becoming a travel agent actually pays and how the business works before committing to anything.</p>
+      <div class="dest">15 MIN · NO PITCH</div>
+    </div>
+    <div class="ticket">
+      <div class="code">TICKET · PART-TIME</div>
+      <h3>Part-Time</h3>
+      <p>Build your travel agency business around your current job. Most agents start at around fifteen hours a week.</p>
+      <div class="dest">FLEXIBLE · SELF-PACED</div>
+    </div>
+    <div class="ticket">
+      <div class="code">TICKET · FULL-TIME</div>
+      <h3>Full-Time</h3>
+      <p>Ready to go all in, run your own travel industry business, and build a team of agents underneath you.</p>
+      <div class="dest">FULL SUPPORT · TEAM ACCESS</div>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta">
+  <h2>Your seat is held. It's not confirmed yet.</h2>
+  <p>Fill in your info, then pick a time. No pressure, no scripts, just a real conversation about whether this fits your life.</p>
+
+  <form class="lead-form" id="leadForm" novalidate>
+    <div class="lead-form-inner">
+      <div class="lead-row">
+        <div class="lead-field">
+          <label for="firstName">First Name</label>
+          <input type="text" id="firstName" name="firstName" required autocomplete="given-name">
+        </div>
+        <div class="lead-field">
+          <label for="lastName">Last Name</label>
+          <input type="text" id="lastName" name="lastName" required autocomplete="family-name">
+        </div>
+      </div>
+      <div class="lead-row">
+        <div class="lead-field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required autocomplete="email">
+        </div>
+        <div class="lead-field">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone" autocomplete="tel">
+        </div>
+      </div>
+      <p class="lead-error" id="leadError">Please enter your first name, last name, and a valid email.</p>
+      <button type="submit" class="btn-primary lead-submit">Continue to Scheduling →</button>
+    </div>
+  </form>
+</section>
+
+<footer>Dax Jones · jonesluxurytravel@gmail.com</footer>
+
+<script>
+  const form = document.getElementById('leadForm');
+  const errorMsg = document.getElementById('leadError');
+  form.addEventListener('submit', async function(e){
+    e.preventDefault();
+    const firstName = document.getElementById('firstName').value.trim();
+    const lastName = document.getElementById('lastName').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+    if(!firstName || !lastName || !emailOk){
+      errorMsg.style.display = 'block';
+      return;
+    }
+    errorMsg.style.display = 'none';
+
+    const fullName = encodeURIComponent(firstName + ' ' + lastName);
+    const emailEnc = encodeURIComponent(email);
+    let url = `https://calendly.com/jonesluxurytravel?name=${fullName}&email=${emailEnc}`;
+    if(phone){
+      url += `&a1=${encodeURIComponent(phone)}`;
+    }
+
+    // Open the scheduling tab immediately, on the click itself, so the
+    // browser doesn't block it as a pop-up. We fill in the destination
+    // right away, then send the lead email in the background.
+    const schedulingTab = window.open(url, '_blank', 'noopener');
+
+    const submitBtn = form.querySelector('.lead-submit');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Submitting...';
+
+    try{
+      await fetch('https://formspree.io/f/mnpapdbl', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: new FormData(form)
+      });
+    }catch(err){
+      // even if the email send fails, the person can still schedule
+    }
+
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Continue to Scheduling →';
+
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Continue to Scheduling →';
+  });
+</script>
+
+</body>
+</html>
